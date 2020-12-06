@@ -80,10 +80,10 @@ class MainWindow(wx.Frame):
     def btnGsFind_Clicked(self, e):
         ofd = wx.FileDialog(self, "Open", "", "", "", wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
         ofd.ShowModal()
-        self.txtGsPath.SetValue(ofd.GetPath())
-
-        # Save to config
-        if len(self.txtGsPath.GetValue()) > 0:
+        
+        # Show & save to config
+        if len(ofd.GetPath()) > 0:
+            self.txtGsPath.SetValue(ofd.GetPath())
             pdfShrink.set_gs_path(self.txtGsPath.GetValue())
 
         ofd.Destroy()

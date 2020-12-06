@@ -1,9 +1,11 @@
-def get_gs_path():
-    import os
-    import json
+import os
+import json
 
+cfgpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'config.json')
+
+def get_gs_path():
     try:
-        with open(os.path.abspath('config.json'), 'r') as cfg:
+        with open(cfgpath, 'r') as cfg:
             config = json.load(cfg)
 
             return config['gs_path']
@@ -11,10 +13,7 @@ def get_gs_path():
         return None
 
 def set_gs_path(gs_path):
-    import os
-    import json
-
-    with open(os.path.abspath('config.json'), 'w') as cfg:
+    with open(cfgpath, 'w') as cfg:
         json.dump({'gs_path': gs_path}, cfg)
 
 def doShrink(gs_path, file_input, file_output, quality):
